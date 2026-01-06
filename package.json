@@ -1,0 +1,28 @@
+{
+  "name": "terp-doc-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TERP Documentation Bot + Companion UI - Playwright-based documentation automation and guide retrieval system",
+  "license": "MIT",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev:doc-bot": "pnpm --filter doc-bot dev",
+    "dev:companion": "pnpm --filter companion dev",
+    "docs:run": "pnpm --filter doc-bot docs:run",
+    "docs:seed": "pnpm --filter doc-bot docs:seed",
+    "docs:report": "pnpm --filter doc-bot docs:report",
+    "build": "pnpm -r build",
+    "build:doc-bot": "pnpm --filter doc-bot build",
+    "build:companion": "pnpm --filter companion build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "id": "login-to-terp",
+    "title": "How to Log In to TERP",
+    "description": "Step-by-step guide for logging into the TERP application",
+    "category": "Getting Started",
+    "tags": ["login", "authentication", "getting-started"],
+    "createdAt": "2025-01-06T00:00:00.000Z",
+    "updatedAt": "2025-01-06T00:00:00.000Z",
+    "version": "1.0.0"
+  },
+  "steps": [
+    {
+      "order": 1,
+      "title": "Navigate to TERP",
+      "description": "Open your web browser and go to the TERP login page.",
+      "action": "navigate"
+    },
+    {
+      "order": 2,
+      "title": "Enter your email",
+      "description": "Type your email address in the email field.",
+      "action": "fill",
+      "selector": "input[type=\"email\"]"
+    },
+    {
+      "order": 3,
+      "title": "Enter your password",
+      "description": "Type your password in the password field.",
+      "action": "fill",
+      "selector": "input[type=\"password\"]"
+    },
+    {
+      "order": 4,
+      "title": "Click Sign In",
+      "description": "Click the Sign In button to access your account.",
+      "action": "click",
+      "selector": "button[type=\"submit\"]"
+    }
+  ]
+}

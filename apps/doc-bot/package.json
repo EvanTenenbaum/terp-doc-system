@@ -1,0 +1,28 @@
+{
+  "name": "doc-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Playwright-based documentation automation for TERP",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/runner/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'No linter configured'",
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "docs:run": "tsx src/runner/index.ts",
+    "docs:seed": "tsx src/runner/seed.ts",
+    "docs:report": "tsx src/runner/report.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.40.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.6.0",
+    "typescript": "^5.3.3"
+  }
+}
