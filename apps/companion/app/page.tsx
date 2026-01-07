@@ -13,6 +13,8 @@ export default function Home() {
   const [selectedGuide, setSelectedGuide] = useState<Guide | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [hasSearched, setHasSearched] = useState(false);
 
   // Load guides on mount
   useEffect(() => {
@@ -34,10 +36,15 @@ export default function Home() {
 
   // Handle search
   const handleSearch = async (query: string) => {
+    setSearchQuery(query);
+
     if (!query.trim()) {
       setSearchResults(guides);
+      setHasSearched(false);
       return;
     }
+
+    setHasSearched(true);
 
     try {
       const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
@@ -86,11 +93,48 @@ export default function Home() {
     );
   }
 
+  // Render no guides found message
+  const renderNoResults = () => {
+    if (!hasSearched) return null;
+
+    // Find similar guides for suggestions
+    const suggestions = guides.slice(0, 3);
+
+    return (
+      <div className={styles.noResults}>
+        <h3>No verified guide exists yet</h3>
+        <p>
+          We couldn&apos;t find a guide matching &quot;{searchQuery}&quot;.
+        </p>
+        {suggestions.length > 0 && (
+          <>
+            <p>You might find these guides helpful:</p>
+            <ul className={styles.suggestions}>
+              {suggestions.map((guide) => (
+                <li key={guide.id}>
+                  <button
+                    onClick={() => handleSelectGuide(guide.id)}
+                    className={styles.suggestionLink}
+                  >
+                    {guide.title}
+                  </button>
+                  <span className={styles.suggestionCategory}>
+                    ({guide.category})
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    );
+  };
+
   return (
     <main className={styles.main}>
       <header className={styles.header}>
         <h1>TERP Companion</h1>
-        <p>Search and view documentation guides</p>
+        <p>Ask &quot;How do I ____?&quot; to find step-by-step guides</p>
       </header>
 
       <section className={styles.search}>
@@ -101,19 +145,19 @@ export default function Home() {
         <section className={styles.viewer}>
           <GuideViewer guide={selectedGuide} onClose={handleCloseGuide} />
         </section>
-      ) : (
+      ) : searchResults.length > 0 ? (
         <section className={styles.results}>
-          <GuideList
-            guides={searchResults}
-            onSelect={handleSelectGuide}
-          />
+          <GuideList guides={searchResults} onSelect={handleSelectGuide} />
         </section>
+      ) : (
+        <section className={styles.results}>{renderNoResults()}</section>
       )}
 
       <footer className={styles.footer}>
         <p>
-          <strong>Note:</strong> This UI only displays retrieved guide content.
-          No free-form explanations are provided.
+          <strong>STRICT RULE:</strong> This UI only displays retrieved guide
+          content. If no guide matches your question, we cannot invent
+          instructions - only verified guides are shown.
         </p>
       </footer>
     </main>
