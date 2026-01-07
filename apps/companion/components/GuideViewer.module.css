@@ -138,3 +138,25 @@
   border-radius: 0.25rem;
   color: var(--muted);
 }
+
+.noSteps {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+}
+
+.disclaimer {
+  padding: 1rem 1.5rem;
+  background: #fef3c7;
+  border-top: 1px solid #fcd34d;
+  font-size: 0.875rem;
+  color: #92400e;
+}
+
+@media (prefers-color-scheme: dark) {
+  .disclaimer {
+    background: #422006;
+    border-top-color: #78350f;
+    color: #fcd34d;
+  }
+}
