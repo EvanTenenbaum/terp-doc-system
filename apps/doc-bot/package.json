@@ -11,9 +11,10 @@
     "lint": "echo 'No linter configured'",
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
-    "docs:run": "tsx src/runner/index.ts",
-    "docs:seed": "tsx src/runner/seed.ts",
-    "docs:report": "tsx src/runner/report.ts",
+    "docs:auth": "tsx src/cli/auth.ts",
+    "docs:seed": "tsx src/cli/seed.ts",
+    "docs:run": "tsx src/cli/run.ts",
+    "docs:report": "tsx src/cli/report.ts",
     "clean": "rm -rf dist"
   },
   "dependencies": {
